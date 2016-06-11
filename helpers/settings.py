@@ -1,3 +1,8 @@
+"""
+PUBLIC RELEASE
+
+"""
+
 # Which extensions to load on startup
 extensions = [
     'cogs.giveaway',
