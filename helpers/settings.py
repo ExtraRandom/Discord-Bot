@@ -3,11 +3,9 @@ extensions = [
     'cogs.giveaway',
     'cogs.general',
     'cogs.restricted',
-    'cogs.versioning',
     'cogs.games',
-    'cogs.spamfilter',
-    'cogs.currency',
-    'cogs.stats',
+    # 'cogs.currency',
+    # 'cogs.weather',
 ]
 # URL for the API
 ex_api = "http://extrarandom-test.ddns.net:5000"
@@ -17,7 +15,7 @@ now_playing = "!help"
 
 # ID's
 bot_id = "180842549873737728"
-dev_id = "132577770046750720"
+dev_id = "92562410493202432"
 
 server_owner = "Idiotech"
 owner_id = "176291669254209539"
