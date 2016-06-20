@@ -4,7 +4,3 @@ pycountry
 bs4
 requests
 pytz
-cffi
-sqlalchemy
-sqlalchemy_utils
-psycopg2
