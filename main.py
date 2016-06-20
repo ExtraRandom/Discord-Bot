@@ -20,14 +20,6 @@ async def on_message(message):
     if message.author is bot.user:
         return
 
-    swear = bot.get_cog('Swear')
-    spam = bot.get_cog('SpamFilter')
-
-    if swear is not None:
-        await swear.message(message)
-    if spam is not None:
-        await spam.message(message)
-
     await bot.process_commands(message)
 
 
@@ -41,10 +33,6 @@ async def on_command(command, ctx):
         log.info("#{1.message.channel.name}: {1.message.author.name} called `!{0}`".format(cmd, ctx))
     except AttributeError:
         log.info("PM: {1.message.author.name} called `!{0}`".format(cmd, ctx))
-
-    stats = bot.get_cog('Stats')
-    if stats is not None:
-        await stats.on_command_p(command.name)
 
 
 @bot.command(hidden=True)

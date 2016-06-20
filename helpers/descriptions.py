@@ -139,29 +139,9 @@ game_close = "Close your community game"
 game_join = "Join a community game"
 game_leave = "Leave a community game"
 
-"""
-STATS
-"""
-
-stats = "I'll show you how much you need me!"
-statsga = "I'll show you how much giveaways I helped you organize"
-
-"""
-VERSIONING
-"""
-
-v_command = "My version number"
-changelog = "My latest changes"
 
 """
 CURRENCY
 """
 
 cc = "Convert currencies!"
-
-"""
-WEATHER
-"""
-
-weather = "Get Weather Status in <loc> (a given city name)"
-weatherb = "Finds Weather Status for input city"

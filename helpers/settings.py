@@ -5,7 +5,6 @@ extensions = [
     'cogs.restricted',
     'cogs.games',
     # 'cogs.currency',
-    # 'cogs.weather',
 ]
 # URL for the API
 ex_api = "http://extrarandom-test.ddns.net:5000"
@@ -32,12 +31,15 @@ patreon_user = "3494381"
 # Make sure to changes these if there are any new channels created/ removed
 channels = {
     "rules": "179965419728273408",
+    "news": "193928651589287938",
+    "links": "194280480596557824",
     "admin": "176304607172100097",
     "mods": "188172983699767296",
     "general": "176293292865093632",
     "gaming": "179945195280924673",
     "tabletop": "188081332834926592",
     "hardware": "188085243478147074",
-    "programming": "188083195470807040",
+    "software": "194286816797392896",
     "giveaways": "188087131070005248",
+    # "prison": "194285159887929345",
 }
