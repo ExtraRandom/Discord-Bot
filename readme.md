@@ -1,6 +1,6 @@
 # Discord Bot
 
-Don't use in current state, will update soon!
+No longer being updated, may come back to and return it to a state I am happy with in the future.
 
 ### Local
 * Install Python 3.5+
