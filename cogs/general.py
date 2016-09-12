@@ -1,116 +1,17 @@
-import calendar
+# import calendar
 from datetime import datetime
 
-import aiohttp
+# import aiohttp
 from discord.ext import commands
 from pytz import timezone
 
-import helpers.tokens as t
-from helpers import descriptions as desc, time_calculations as tc, settings
+# import helpers.tokens as t
+from helpers import descriptions as desc  # , time_calculations as tc, settings
 
 
 class General:
     def __init__(self, bot):
-        """
-        Edit self.dates with releases we want to track
-        """
         self.bot = bot
-
-    @commands.command(description=desc.reddit, brief=desc.reddit)
-    async def reddit(self):
-        await self.bot.say("https://www.reddit.com/r/{}".format(settings.reddit))
-
-    @commands.command(description=desc.patreon, brief=desc.patreon)
-    async def patreon(self):
-        with aiohttp.ClientSession() as session:
-            async with session.get('http://api.patreon.com/user/{}'.format(settings.patreon_user)) as resp:
-                data = await resp.json()
-                if len(data["linked"]) > 0:
-                    patrons = str(data["linked"][0]["patron_count"])
-                    pledge = str(data["linked"][0]["pledge_sum"])[:-2]
-                else:
-                    patrons = "N/A"
-                    pledge = "N/A"
-        await self.bot.say("{0} patrons, ${1} per month. Become a patron: https://www.patreon.com/{2}".format(
-            patrons, pledge, settings.patreon))
-
-    @commands.command(description=desc.github, brief=desc.github)
-    async def github(self):
-        await self.bot.say("You can request features, contribute and report issues with the bot here:"
-                           "\nhttps://github.com/iScrE4m/IdiotechDiscordBot")
-
-    @commands.command(description=desc.twitch, brief=desc.twitchb)
-    async def twitch(self):
-        with aiohttp.ClientSession() as session:
-            async with session.get('https://api.twitch.tv/kraken/streams?channel={}'.format(settings.twitch))as resp:
-                data = await resp.json()
-                if len(data["streams"]) > 0:
-                    game = data["streams"][0]["game"]
-                    views = data["streams"][0]["viewers"]
-                    fmt = "%Y-%m-%dT%H:%M:%SZ"
-                    hrs, mins, secs = tc.calc_duration(datetime.strptime(data["streams"][0]["created_at"], fmt))
-                    # if one person is watching return 'person' instead of people
-                    if views == 1:
-                        peep = "person"
-                    else:
-                        peep = "people"
-                    reply = "**{}** is live streaming **{}** with **{}** {} watching! " \
-                            "\nCurrent Uptime: {} hours, {} minutes and {} seconds." \
-                            "\nhttps://www.twitch.tv/{}".format(settings.server_owner,
-                                                                game, views, peep, hrs, mins, secs, settings.twitch)
-                else:
-                    reply = "https://www.twitch.tv/idiotechgaming (OFFLINE)"
-        await self.bot.say(reply)
-
-    @commands.command(description=desc.twitter, brief=desc.twitter)
-    async def twitter(self):  # returns link to Idiotech's twitter
-        # TODO Use api to pull latest tweet(s?) https://dev.twitter.com/rest/public
-        await self.bot.say('https://twitter.com/{}'.format(settings.twitter_handle))
-
-    @commands.command(description=desc.fb, brief=desc.fb)
-    async def facebook(self):  # finds latest facebook post and returns it, along with link to page
-
-        with aiohttp.ClientSession() as session:
-            async with session.get('https://graph.facebook.com/v2.6/{}/posts'
-                                   '?access_token={}'.format(settings.facebook, t.fb_key)) as resp:
-                data = await resp.json()
-                fb_post = data["data"][0]["message"]
-                y, m, d, = tc.date_split(data["data"][0]["created_time"])  # y = year, m = month, d = day
-                # TODO Make date ago
-                msg = """**Latest Facebook Post**
-```{4}```
-{0}{1} of {2}, {3}
-
-https://www.facebook.com/idiotechgaming/""".format(d, tc.get_date_suf(d), calendar.month_name[int(m)], y, fb_post)
-                await self.bot.say(msg)
-
-    @commands.command(description=desc.youtube, brief=desc.youtube)
-    async def youtube(self):
-        connector = aiohttp.TCPConnector(verify_ssl=False)
-
-        with aiohttp.ClientSession(connector=connector) as session:
-            async with session.get('https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={}'
-                                   '&maxResults=1&order=date&key={}'.format(settings.yt_channel, t.yt_key)) as resp:
-                data = await resp.json()
-
-                mo = "**"
-                title = "{0}Latest Upload:{0} {1}".format(mo, data["items"][0]["snippet"]["title"])
-
-                uploaded = data["items"][0]["snippet"]["publishedAt"]
-                date = str(uploaded).split('T')[0]
-
-                year, month, day = date.split('-')
-                month = calendar.month_name[int(month)]
-
-                # TODO Make Uploaded in ago format
-                uploaded = "{0} the {1}{2}, {3}".format(month, day, tc.get_date_suf(day), year)
-                link = "https://youtu.be/{}".format(data["items"][0]["id"]["videoId"])
-
-                await self.bot.say("{}\n{}\n\n{}".format(title, uploaded, link))
-
-    @commands.command(description=desc.rules, brief=desc.rules)
-    async def rules(self):
-        await self.bot.say('Please read <#{}>'.format(settings.channels['rules']))
 
     @commands.group(pass_context=True, description=desc.time, brief=desc.time)
     async def time(self, ctx):

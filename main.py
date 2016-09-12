@@ -48,13 +48,11 @@ async def reload(*, module: str):
     try:
         bot.unload_extension(module)
         bot.load_extension(module)
-
     except Exception as e:
-        await bot.say('\U0001f52b')
+        await bot.say(":confounded:")
         await bot.say('{}: {}'.format(type(e).__name__, e))
-
     else:
-        await bot.say('\U0001f44c')
+        await bot.say(":ok_hand:")
 
 
 @bot.command(hidden=True)
@@ -69,13 +67,11 @@ async def load(*, module: str):
 
     try:
         bot.load_extension(module)
-
     except Exception as e:
-        await bot.say('\U0001f52b')
+        await bot.say(":confounded:")
         await bot.say('{}: {}'.format(type(e).__name__, e))
-
     else:
-        await bot.say('\U0001f44c')
+        await bot.say(":ok_hand:")
 
 
 @bot.command(hidden=True)
@@ -86,13 +82,11 @@ async def unload(*, module: str):
 
     try:
         bot.unload_extension(module)
-
     except Exception as e:
-        await bot.say('\U0001f52b')
+        await bot.say(":confounded:")
         await bot.say('{}: {}'.format(type(e).__name__, e))
-
     else:
-        await bot.say('\U0001f44c')
+        await bot.say(":ok_hand:")
 
 
 if __name__ == '__main__':

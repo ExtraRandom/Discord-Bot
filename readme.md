@@ -1,7 +1,12 @@
 # Discord Bot
 
-Don't use in current state, will update soon!
+A Simple Discord Bot.
 
-### Local
+### Features
+-
+
+### Set-up
 * Install Python 3.5+
 * Run ```pip install -r requirements.txt```
+* Edit tokens.py, follow the instructions there for getting the tokens/keys
+* Run main.py

@@ -2,6 +2,8 @@ from discord.ext import commands
 import discord.utils
 from helpers import settings
 
+# TODO Remove checks that aren't needed
+
 
 def is_server_owner():
     """
