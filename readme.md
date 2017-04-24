@@ -1,3 +1,6 @@
+# Dead Project
+
+
 # Discord Bot
 
 A Simple Discord Bot.
